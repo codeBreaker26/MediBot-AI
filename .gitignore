@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.venv/
+*.bin
+*.ggml
+*.gguf
+.DS_Store
+.ipynb_checkpoints/
+trials.ipynb
+.vscode/
