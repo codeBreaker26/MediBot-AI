@@ -109,6 +109,11 @@ MediBotIQ/
 ```
 
 ---
+🚀 Live Demo
+
+Try the deployed application here:
+
+👉 https://medibot-ai-me9ncrwuwnyusjcbwkkw3b.streamlit.app/
 
 ## ⚡ Local Setup
 
