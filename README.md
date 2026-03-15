@@ -17,7 +17,7 @@ license: mit
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776ab?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.36-ff4b4b?style=flat-square&logo=streamlit&logoColor=white)](https://streamlit.io)
-[![OpenAI](https://img.shields.io/badge/GPT--3.5--turbo-OpenAI-412991?style=flat-square&logo=openai&logoColor=white)](https://openai.com)
+[![Gemini](https://img.shields.io/badge/Gemini-2.5%20Flash-4285f4?style=flat-square&logo=google&logoColor=white)](https://ai.google.dev)
 [![Pinecone](https://img.shields.io/badge/Pinecone-Vector%20DB-000000?style=flat-square)](https://pinecone.io)
 [![LangChain](https://img.shields.io/badge/LangChain-0.2-1c3c3c?style=flat-square)](https://langchain.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)](LICENSE)
@@ -30,7 +30,7 @@ license: mit
 
 ## 📌 Overview
 
-MediBotIQ is a **Retrieval-Augmented Generation (RAG) medical chatbot** built with a clean, modular architecture. It retrieves relevant context from a curated medical knowledge base stored in Pinecone, then uses GPT-3.5-turbo to generate accurate, context-aware responses — all through a polished dark-themed Streamlit interface.
+MediBotIQ is a **Retrieval-Augmented Generation (RAG) medical chatbot** built with a clean, modular architecture. It retrieves relevant context from a curated medical knowledge base stored in Pinecone, then uses Gemini 2.5 Flash to generate accurate, context-aware responses — all through a polished dark-themed Streamlit interface.
 
 > ⚠️ **Disclaimer:** MediBotIQ provides general medical information only and is not a substitute for professional medical advice. Always consult a qualified healthcare provider for personal health concerns.
 
@@ -39,7 +39,7 @@ MediBotIQ is a **Retrieval-Augmented Generation (RAG) medical chatbot** built wi
 ## ✨ Features
 
 - 🔍 **RAG Pipeline** — Retrieves relevant chunks from a medical knowledge base before generating answers, grounding every response in real medical content
-- ⚡ **Fast responses** — GPT-3.5-turbo via OpenAI API delivers answers in 1–3 seconds
+- ⚡ **Fast responses** — Gemini 2.5 Flash via the Gemini Developer API delivers answers in 1–3 seconds
 - 🧠 **Conversation memory** — Maintains context across the last 3 exchanges for follow-up questions
 - 📄 **Source transparency** — Every answer shows which pages of the knowledge base it was retrieved from
 - 🛡️ **Smart disclaimers** — Automatically adds medical disclaimers when responses involve dosages, treatments, or prescriptions
@@ -60,7 +60,7 @@ HuggingFace Embeddings
 Pinecone Vector Search ──► Top-3 relevant medical text chunks
     │
     ▼
-GPT-3.5-turbo (OpenAI) ──► Grounded, context-aware answer
+Gemini 2.5 Flash (Google) ──► Grounded, context-aware answer
     │
     ▼
 Streamlit UI (with sources + disclaimer)
@@ -72,7 +72,7 @@ Streamlit UI (with sources + disclaimer)
 
 | Layer | Technology |
 |---|---|
-| LLM | GPT-3.5-turbo (OpenAI) |
+| LLM | Gemini 2.5 Flash |
 | Embeddings | sentence-transformers/all-MiniLM-L6-v2 |
 | Vector Database | Pinecone |
 | Orchestration | LangChain |
@@ -89,7 +89,7 @@ MediBotIQ/
 ├── app.py                  # Streamlit UI — clean, thin layer only
 │
 ├── core/
-│   ├── chain.py            # LCEL chain — prompt + GPT-3.5 + output parser
+│   ├── chain.py            # LCEL chain — prompt + Gemini + output parser
 │   ├── vectorstore.py      # Pinecone connection & retriever
 │   └── embeddings.py       # HuggingFace embeddings (cached)
 │
@@ -136,7 +136,7 @@ cp .env.example .env
 ```
 Open `.env` and fill in your keys:
 ```
-OPENAI_API_KEY=sk-...
+GEMINI_API_KEY=...
 PINECONE_API_KEY=...
 PINECONE_HOST=https://your-index-host.pinecone.io
 ```

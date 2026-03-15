@@ -2,7 +2,13 @@ import streamlit as st
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from config.settings import OPENAI_API_KEY, OPENAI_MODEL, OPENAI_MAX_TOKENS, OPENAI_TEMPERATURE
+from config.settings import (
+    GEMINI_API_KEY,
+    GEMINI_BASE_URL,
+    GEMINI_MAX_TOKENS,
+    GEMINI_MODEL,
+    GEMINI_TEMPERATURE,
+)
 from core.vectorstore import get_retriever
 
 
@@ -44,13 +50,17 @@ def format_docs(docs) -> str:
 
 @st.cache_resource(show_spinner=False)
 def get_llm():
-    if not OPENAI_API_KEY:
-        raise ValueError("OPENAI_API_KEY is not set in your .env / Secrets.")
+    if not GEMINI_API_KEY:
+        raise ValueError("GEMINI_API_KEY is not set in your .env / Secrets.")
+
+    # Gemini exposes an OpenAI-compatible endpoint, which lets us keep the
+    # existing LangChain chat chain with only configuration changes.
     return ChatOpenAI(
-        model=OPENAI_MODEL,
-        openai_api_key=OPENAI_API_KEY,
-        max_tokens=OPENAI_MAX_TOKENS,
-        temperature=OPENAI_TEMPERATURE,
+        model=GEMINI_MODEL,
+        api_key=GEMINI_API_KEY,
+        base_url=GEMINI_BASE_URL,
+        max_tokens=GEMINI_MAX_TOKENS,
+        temperature=GEMINI_TEMPERATURE,
     )
 
 
