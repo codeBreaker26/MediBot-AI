@@ -1,5 +1,6 @@
 import streamlit as st
 from core.chain import get_answer
+from config.settings import GEMINI_MODEL
 from utils.helpers import validate_env, sanitize, needs_disclaimer
 
 # ── Page config ───────────────────────────────────────────────────────────────
@@ -274,9 +275,9 @@ if "msg_count" not in st.session_state:
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown('<div class="sidebar-section">System</div>', unsafe_allow_html=True)
-    st.markdown("""
+    st.markdown(f"""
 <div style="font-size:0.82rem; color:#7d8590; line-height:1.6;">
-    <b style="color:#e6edf3;">Model</b> GPT-3.5-turbo<br>
+    <b style="color:#e6edf3;">Model</b> {GEMINI_MODEL}<br>
     <b style="color:#e6edf3;">Knowledge base</b> Medical textbook<br>
     <b style="color:#e6edf3;">Vector DB</b> Pinecone<br>
     <b style="color:#e6edf3;">Embeddings</b> MiniLM-L6-v2
@@ -340,10 +341,10 @@ if missing:
     st.stop()
 
 # Status badge
-st.markdown("""
+st.markdown(f"""
 <div class="status-badge">
     <div class="status-dot"></div>
-    GPT-3.5 · Pinecone · Online
+    {GEMINI_MODEL} · Pinecone · Online
 </div>
 """, unsafe_allow_html=True)
 
